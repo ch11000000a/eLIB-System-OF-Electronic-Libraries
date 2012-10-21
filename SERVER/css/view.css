@@ -1,0 +1,32 @@
+body {
+height: 100%;
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 12px;
+}
+#rating{
+width:170px;
+height: 25px;
+}
+#ratBlocks{
+width:172px;
+height: 25px;
+margin-top:-25px;
+display:none;
+}
+#ratZero{
+width:170px;
+background: url(./img/stars.png) repeat-x 0 0;
+height: 25px;
+}
+#ratDone{
+width:0;
+background: url(./img/stars.png) repeat-x 0 -50px;
+height: 25px;
+margin-top:-25px;
+}
+#ratHover{
+width:0px;
+background: url(./img/stars.png) repeat-x 0 -25px;
+height: 25px;
+margin-top:-25px;
+}
