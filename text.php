@@ -10,12 +10,12 @@ session_start();
     include ("config.php");
     if (empty($_SESSION['login']) or empty($_SESSION['id']))
     {
-    	echo "Вы не авторизованы, <a href='index.php'>Авторизоваться</a>";
+      echo "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹, <a href='index.php'>РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ</a>";
 }
     else
     {
 
-echo "<a href='index.php'>Вернуться на Главную Страницу</a><br/><br/>";
+echo "<a href='index.php'>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р“Р»Р°РІРЅСѓСЋ РЎС‚СЂР°РЅРёС†Сѓ</a><br/><br/>";
 
 $sql = "SELECT * FROM `books`";
 $result = mysql_query($sql) or die(mysql_error() ."<br/>". $sql);
@@ -25,7 +25,7 @@ while ($row = mysql_fetch_assoc($result))
   echo "<center><b>" . $row['nazv'] . "</b></center><br/>";
   echo "<center><pre>" . $row['text'] . "</pre></center><hr><br/>";
 }
-	
+  
   }
 ?>
 </body>

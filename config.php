@@ -1,5 +1,5 @@
 <?php
-	define ("COPY", "eLIB&nbsp;v.&nbsp;1.0&nbsp;&copy;&nbsp;<a href='mailto:diezel@xakep.ru'>Гонцов&nbsp;Д.</a>&nbsp;2012");
+	define ("COPY", "eLIB&nbsp;v.&nbsp;1.0&nbsp;&copy;&nbsp;<a href='mailto:diezel@xakep.ru'>Р“РѕРЅС†РѕРІ&nbsp;Р”.</a>&nbsp;2012");
 	define ("VERSION", "eLIB v. 1.0");
 	
 	$db = mysql_connect ("host","login","pass");

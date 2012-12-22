@@ -21,12 +21,12 @@ session_start();
     include('config.php');
     if (empty($_SESSION['login']) or empty($_SESSION['id']))
     {
-      echo "Вы не авторизованы, <a href='index.php'>Авторизоваться</a>";
+      echo "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹, <a href='index.php'>РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ</a>";
 }
     else
     {
 
-echo "<a href='index.php'>Вернуться на Главную Страницу</a><br/><br/>";
+echo "<a href='index.php'>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р“Р»Р°РІРЅСѓСЋ РЎС‚СЂР°РЅРёС†Сѓ</a><br/><br/>";
 $username = $_SESSION['login']; 
 $all_books = mysql_query("SELECT COUNT(*) FROM books");
 $books = mysql_fetch_row($all_books);
@@ -63,11 +63,11 @@ function formatfilesize( $data ) {
     mysql_select_db( $dbname );
     $result = mysql_query( "SHOW TABLE STATUS" );
     $dbsize = 0;
-	
+    
     while( $row = mysql_fetch_array( $result ) ) {  
-	
+    
         $dbsize += $row[ "Data_length" ] + $row[ "Index_length" ];
-		
+        
     }
 
 
@@ -78,16 +78,16 @@ $row = mysql_fetch_assoc($result);
 $group =  $row['group_id'];
 
 $group = intval($group);
-if ($group == 0) { $gt = '<b>Студенты<b>'; $grac = 'Вы можете читать/скачивать книги'; }
-if ($group == 1) { $gt = '<b><font color="orange">Модераторы</font></b>'; $grac = '<b><font color="orange">Полный доступ без права загрузки файлов на сервер</font></b>'; }
-if ($group == 2) { $gt = '<b><font color="red">Администраторы</font></b>'; $grac = '<b><font color="red">Полный доступ</font></b>'; }
+if ($group == 0) { $gt = '<b>РЎС‚СѓРґРµРЅС‚С‹<b>'; $grac = 'Р’С‹ РјРѕР¶РµС‚Рµ С‡РёС‚Р°С‚СЊ/СЃРєР°С‡РёРІР°С‚СЊ РєРЅРёРіРё'; }
+if ($group == 1) { $gt = '<b><font color="orange">РњРѕРґРµСЂР°С‚РѕСЂС‹</font></b>'; $grac = '<b><font color="orange">РџРѕР»РЅС‹Р№ РґРѕСЃС‚СѓРї Р±РµР· РїСЂР°РІР° Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»РѕРІ РЅР° СЃРµСЂРІРµСЂ</font></b>'; }
+if ($group == 2) { $gt = '<b><font color="red">РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹</font></b>'; $grac = '<b><font color="red">РџРѕР»РЅС‹Р№ РґРѕСЃС‚СѓРї</font></b>'; }
 
 
-echo "<b>Вы: </b>" . $username . "<br/><b>Книг в Базе: </b><a href='stat.php?b_w=view'>". $books[0] . "</a><br/>";
-echo "<b>Ваша Группа: </b>" . $gt . "</br>";
-echo "<b>Привилегии: </b>" . $grac . "</br>";
-echo "<b>Размер базы данных составляет: </b>" . formatfilesize( $dbsize ) . "<br/>";
-echo "<b>Всего пользователей: </b>" ."<a href='stat.php?u_w=view'>". $users[0] . "</a><br/>";
+echo "<b>Р’С‹: </b>" . $username . "<br/><b>РљРЅРёРі РІ Р‘Р°Р·Рµ: </b><a href='stat.php?b_w=view'>". $books[0] . "</a><br/>";
+echo "<b>Р’Р°С€Р° Р“СЂСѓРїРїР°: </b>" . $gt . "</br>";
+echo "<b>РџСЂРёРІРёР»РµРіРёРё: </b>" . $grac . "</br>";
+echo "<b>Р Р°Р·РјРµСЂ Р±Р°Р·С‹ РґР°РЅРЅС‹С… СЃРѕСЃС‚Р°РІР»СЏРµС‚: </b>" . formatfilesize( $dbsize ) . "<br/>";
+echo "<b>Р’СЃРµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№: </b>" ."<a href='stat.php?u_w=view'>". $users[0] . "</a><br/>";
 
 
 if (!empty($_GET['u_w'])) {
@@ -99,7 +99,7 @@ $u_w = abs($u_w);
 
 $sql = "SELECT * FROM `users`";
 $result = mysql_query($sql) or die(mysql_error() ."<br/>". $sql);
-echo "<br/><b>Пользователи:</b><br/>"; // выводим юзеров
+echo "<br/><b>РџРѕР»СЊР·РѕРІР°С‚РµР»Рё:</b><br/>";
 while ($row = mysql_fetch_assoc($result))
 {
   echo $row['login'] . "<br/>";
@@ -116,7 +116,7 @@ $b_w = abs($b_w);
 
 $sql1 = "SELECT * FROM `books`";
 $result1 = mysql_query($sql1) or die(mysql_error() ."<br/>");
-echo "<br/><b>Книги:</b><br/>";
+echo "<br/><b>РљРЅРёРіРё:</b><br/>";
 while ($row = mysql_fetch_assoc($result1))
 {
   echo $row['nazv'] . "<br/>";

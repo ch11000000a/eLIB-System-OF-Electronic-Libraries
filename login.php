@@ -22,7 +22,7 @@ if (isset($_POST['login'])) { $login = $_POST['login']; if ($login == '') { unse
    
 if (empty($login) or empty($password))
     {
-    exit ("Вы ввели не всю информацию, вернитесь назад и заполните все поля! <a href='index.php'>На Главную</a>");
+    exit ("Р’С‹ РІРІРµР»Рё РЅРµ РІСЃСЋ РёРЅС„РѕСЂРјР°С†РёСЋ, РІРµСЂРЅРёС‚РµСЃСЊ РЅР°Р·Р°Рґ Рё Р·Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ! <a href='index.php'>РќР° Р“Р»Р°РІРЅСѓСЋ</a>");
     }
    
     $login = stripslashes($login);
@@ -42,7 +42,7 @@ $result = mysql_query("SELECT * FROM users WHERE login='$login'",$db);
     if (empty($myrow['password']))
     {
     
-    exit ("Извините, введённый вами логин или пароль неверный. <a href='index.php'>На Главную</a>");
+    exit ("РР·РІРёРЅРёС‚Рµ, РІРІРµРґС‘РЅРЅС‹Р№ РІР°РјРё Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ РЅРµРІРµСЂРЅС‹Р№. <a href='index.php'>РќР° Р“Р»Р°РІРЅСѓСЋ</a>");
     }
     else {
     
@@ -55,7 +55,7 @@ $result = mysql_query("SELECT * FROM users WHERE login='$login'",$db);
  else {
     
 
-    exit ("Извините, введённый вами логин или пароль неверный. <a href='index.php'>На Главную</a>");
+    exit ("РР·РІРёРЅРёС‚Рµ, РІРІРµРґС‘РЅРЅС‹Р№ РІР°РјРё Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ РЅРµРІРµСЂРЅС‹Р№. <a href='index.php'>РќР° Р“Р»Р°РІРЅСѓСЋ</a>");
     }
     }
     ?>

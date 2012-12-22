@@ -15,7 +15,7 @@
 <body>
 <?php
 header("Content-type: text/html; charset=windows-1251");
-error_reporting(0); // пыха выдает нотисы на пустые переменные...пока так оставлю а то линяк писать :D
+error_reporting(0);
 
     if (isset($_POST['avtor'])) { $avtor = $_POST['avtor']; if ($avtor == '') { unset($avtor);} }  
     if (isset($_POST['nazv'])) { $nazv=$_POST['nazv']; if ($nazv =='') { unset($nazv);} } 
@@ -30,19 +30,17 @@ error_reporting(0); // пыха выдает нотисы на пустые переменные...пока так оставл
     if (isset($_POST['stat'])) { $stat=$_POST['stat']; if ($stat =='') { unset($stat);} }
     if (isset($_POST['link'])) { $link=$_POST['link']; if ($link =='') { unset($link);} }
 
-// текст
+
 if (isset($_POST['keywords'])) { $keywords=$_POST['keywords']; if ($keywords =='') { unset($keywords);} }
 if (isset($_POST['referat'])) { $referat=$_POST['referat']; if ($referat =='') { unset($referat);} }
 if (isset($_POST['text'])) { $text=$_POST['text']; if ($text =='') { unset($text);} }
-// текст
 
 
 if (empty($avtor) or empty($nazv) or empty($god_izd)) 
     {
-    exit ("Вы ввели не всю информацию, вернитесь назад и заполните все поля!");
+    exit ("Р’С‹ РІРІРµР»Рё РЅРµ РІСЃСЋ РёРЅС„РѕСЂРјР°С†РёСЋ, РІРµСЂРЅРёС‚РµСЃСЊ РЅР°Р·Р°Рґ Рё Р·Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ!");
     }
  
- // если данные введены,то обрабатываем, чтобы теги и скрипты не работали...
     $avtor = stripslashes($avtor);
     $avtor = htmlspecialchars($avtor);
     $nazv = stripslashes($nazv);
@@ -66,15 +64,9 @@ if (empty($avtor) or empty($nazv) or empty($god_izd))
     $stat = stripslashes($stat);
     $stat = htmlspecialchars($stat);
 
-// текст
-
-$keywords = stripslashes($keywords);
-$keywords = htmlspecialchars($keywords);
-
-$referat = stripslashes($referat);
-
-
-
+    $keywords = stripslashes($keywords);
+    $keywords = htmlspecialchars($keywords);
+    $referat = stripslashes($referat);
  
     $avtor = trim($avtor);
     $nazv = trim($nazv);
@@ -87,9 +79,9 @@ $referat = stripslashes($referat);
     $bbk = trim($bbk);
     $grif = trim($grif);
     $stat = trim($stat);
-    // $link - ссылка на книгу !
+    
     $link = trim($link); 
-    // link_end
+    
     $keywords = trim($keywords);
     
     require_once("config.php");
@@ -97,10 +89,10 @@ $referat = stripslashes($referat);
     
     if ($result2=='TRUE')
     {
-    echo "Книга успешно добавлена! <a href='index.php'>Добавить еще...</a>";
+    echo "РљРЅРёРіР° СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°! <a href='index.php'>Р”РѕР±Р°РІРёС‚СЊ РµС‰Рµ...</a>";
     }
  else {
-    echo "Ошибка!";
+    echo "РћС€РёР±РєР°!";
     }
     ?>
     </body>

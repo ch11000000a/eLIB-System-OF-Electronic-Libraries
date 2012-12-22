@@ -22,12 +22,12 @@ session_start();
     include('config.php');
     if (empty($_SESSION['login']) or empty($_SESSION['id']))
     {
-      echo "Вы не авторизованы, <a href='index.php'>Авторизоваться</a>";
+      echo "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹, <a href='index.php'>РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ</a>";
 }
     else
     {
 
-echo "<a href='index.php'>Вернуться на Главную Страницу</a><br/><br/>";
+echo "<a href='index.php'>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р“Р»Р°РІРЅСѓСЋ РЎС‚СЂР°РЅРёС†Сѓ</a><br/><br/>";
 
 $sql = "SELECT * FROM `books`";
 $result = mysql_query($sql) or die(mysql_error());
@@ -48,9 +48,9 @@ while ($row = mysql_fetch_assoc($result))
     $table .= "<td>".$row['grif']."</td>\n";
     $table .= "<td>".$row['stat']."</td>\n";
     $table .= "<td>".$row['keywords']."</td>\n";
-    $table .= "<td><a href='get_ref.php?ref_id=" . $row['id'] . "'>Реферат</a></td>\n";
-    $table .= "<td><a href='get_text.php?text_id=" . $row['id'] . "'>Текст</a></td>\n";
-    $table .= "<td><a href='" . $row['link'] . "'>Скачать</a></td>\n"; 
+    $table .= "<td><a href='get_ref.php?ref_id=" . $row['id'] . "'>Р РµС„РµСЂР°С‚</a></td>\n";
+    $table .= "<td><a href='get_text.php?text_id=" . $row['id'] . "'>РўРµРєСЃС‚</a></td>\n";
+    $table .= "<td><a href='" . $row['link'] . "'>РЎРєР°С‡Р°С‚СЊ</a></td>\n"; 
     $table .= "</tr>\n";
 }
 

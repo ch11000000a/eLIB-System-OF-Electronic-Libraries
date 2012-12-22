@@ -19,105 +19,105 @@ session_start();
 </head>
 <body>
 <?php
-    // Проверяем, пусты ли переменные логина и id пользователя
+    
     if (empty($_SESSION['login']) or empty($_SESSION['id']))
     {
-      echo "Вы не авторизованы, <a href='index.php'>Авторизоваться</a>";
+      echo "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹, <a href='index.php'>РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ</a>";
 }
     else
     {
 
 include('config.php');
 
-echo "<a href='users.php'>Назад</a><br/><br/>";
+echo "<a href='users.php'>РќР°Р·Р°Рґ</a><br/><br/>";
 
-//Защищаемся от хацкеров
+
 if (!empty($_GET['user_id'])) {
 $id = $_GET['user_id'];
 $id = htmlspecialchars($id);
 $id = stripcslashes($id);
 $id = trim($id);
 $id = abs($id);
-//Защищаемся от хацкеров
+
 
 $sql = "SELECT * FROM `users` WHERE id='$id'";
 $result = mysql_query($sql) or die(mysql_error() ."<br/>");
 
 while ($row = mysql_fetch_assoc($result))
 {
- 	if ($row['group_id'] == 0) {  $row['group_id'] = 'Пользователь'; }
- 	if ($row['group_id'] == 1) {  $row['group_id'] = '<font color="orange">Модератор</font>'; }
- 	if ($row['group_id'] == 2) {  $row['group_id'] = '<font color="red">Администратор</font>'; }
-	$login = $row['login'];
+    if ($row['group_id'] == 0) {  $row['group_id'] = 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ'; }
+    if ($row['group_id'] == 1) {  $row['group_id'] = '<font color="orange">РњРѕРґРµСЂР°С‚РѕСЂ</font>'; }
+    if ($row['group_id'] == 2) {  $row['group_id'] = '<font color="red">РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ</font>'; }
+    $login = $row['login'];
     $userid = $row['id'];
-    echo "<b><h3>" . $row['login'] . " - " . $row['group_id'] . "</h3></b><br/><a href='get_user.php?user_id=" . $row['id'] . "&new_login=" . $row['id'] . "'>[Изменить Логин]</a>&nbsp;&nbsp;<a href='get_user.php?user_id=" . $row['id'] . "&new_pass=" . $row['id'] . "'>[Изменить Пароль]</a>&nbsp;&nbsp;<a href='get_user.php?user_id=" . $row['id'] . "&user_del=" . $row['id'] . "'>[Удалить Пользователя]</a>";
+    echo "<b><h3>" . $row['login'] . " - " . $row['group_id'] . "</h3></b><br/><a href='get_user.php?user_id=" . $row['id'] . "&new_login=" . $row['id'] . "'>[РР·РјРµРЅРёС‚СЊ Р›РѕРіРёРЅ]</a>&nbsp;&nbsp;<a href='get_user.php?user_id=" . $row['id'] . "&new_pass=" . $row['id'] . "'>[РР·РјРµРЅРёС‚СЊ РџР°СЂРѕР»СЊ]</a>&nbsp;&nbsp;<a href='get_user.php?user_id=" . $row['id'] . "&user_del=" . $row['id'] . "'>[РЈРґР°Р»РёС‚СЊ РџРѕР»СЊР·РѕРІР°С‚РµР»СЏ]</a>";
 }
-	
+    
 
 
-// меняем логин_start
+
 if (!empty($_GET['user_id']) and !empty($_GET['new_login']) and $_GET['user_id'] == $_GET['new_login']) {
-echo "<form action='get_user.php?user_id=" . $userid . "&new_login=" . $userid . "' method='post'><input name='new_login' type='text' id='new_login' placeholder='Новый логин для пользователя " . $login . "' size='45' required>";
-echo "<input name='submit' type='submit' id='submit' value='Изменить'></form><br/>";
+echo "<form action='get_user.php?user_id=" . $userid . "&new_login=" . $userid . "' method='post'><input name='new_login' type='text' id='new_login' placeholder='РќРѕРІС‹Р№ Р»РѕРіРёРЅ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ " . $login . "' size='45' required>";
+echo "<input name='submit' type='submit' id='submit' value='РР·РјРµРЅРёС‚СЊ'></form><br/>";
 
-//обрабатываем данные
+
 if (isset($_POST['new_login'])) { $new_login = $_POST['new_login']; if ($new_login == '') 
     $new_login = stripslashes($new_login);
     $new_login = htmlspecialchars($new_login);
-    // вносим в БД
+    
     $query = "UPDATE users SET login = '$new_login' WHERE id = $userid";
     $result = mysql_query ($query);
-//сообщаем юзеру
-    echo "<font color='lime'>Логин пользователя</font> <b><font color='red'>" . $login . "</font></b> <font color='lime'>изменен на </font><b><font color='red'>" . $new_login . "</font></b>";
+
+    echo "<font color='lime'>Р›РѕРіРёРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</font> <b><font color='red'>" . $login . "</font></b> <font color='lime'>РёР·РјРµРЅРµРЅ РЅР° </font><b><font color='red'>" . $new_login . "</font></b>";
 { unset($new_login);} }
 }
-// меняем логин_end
 
-// меняем пасс_start
+
+
 if (!empty($_GET['user_id']) and !empty($_GET['new_pass']) and $_GET['user_id'] == $_GET['new_pass']) {
-echo "<form action='get_user.php?user_id=" . $userid . "&new_pass=" . $userid . "' method='post'><input name='new_pass' type='password' id='new_pass' placeholder='Новый пароль для пользователя " . $login . "' size='45' required>";
-echo "<input name='submit' type='submit' id='submit' value='Изменить'></form><br/>";
+echo "<form action='get_user.php?user_id=" . $userid . "&new_pass=" . $userid . "' method='post'><input name='new_pass' type='password' id='new_pass' placeholder='РќРѕРІС‹Р№ РїР°СЂРѕР»СЊ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ " . $login . "' size='45' required>";
+echo "<input name='submit' type='submit' id='submit' value='РР·РјРµРЅРёС‚СЊ'></form><br/>";
 
-//обрабатываем данные
+
 if (isset($_POST['new_pass'])) { $new_pass = $_POST['new_pass']; if ($new_pass == '') 
     $new_pass = stripslashes($new_pass);
     $new_pass = htmlspecialchars($new_pass);
     $new_pass = md5(md5($new_pass));
- // вносим в БД
+ 
     $query = "UPDATE users SET password = '$new_pass' WHERE id = $userid";
     $result = mysql_query ($query);
-//сообщаем юзеру
-    echo "<font color='lime'>Пароль пользователя</font> <b><font color='red'>" . $login . "</font></b> <font color='lime'>изменен.</font>";
+
+    echo "<font color='lime'>РџР°СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</font> <b><font color='red'>" . $login . "</font></b> <font color='lime'>РёР·РјРµРЅРµРЅ.</font>";
 { unset($new_pass);} }
 }
-// меняем пасс_end
 
-// удаляем юзера_start
+
+
 if (!empty($_GET['user_id']) and !empty($_GET['user_del']) and $_GET['user_id'] == $_GET['user_del']) {
 echo "<form action='get_user.php?user_id=" . $userid . "&user_del=" . $userid . "' method='post'><input name='del' value='1' type='hidden' id='del' size='45'>";
-echo "<input name='submit' type='submit' id='submit' value='Удалить пользователя'></form><br/>";
+echo "<input name='submit' type='submit' id='submit' value='РЈРґР°Р»РёС‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ'></form><br/>";
 
-//обрабатываем данные
+
 if (isset($_POST['del'])) { $del = $_POST['del']; if ($del == '') 
     $del = stripslashes($del);
     $del = htmlspecialchars($del);
     
-// вносим в БД
+
     if ( $del == 1 ) {
     $query = "DELETE from users where id = $userid"; 
-/* Выполняем запрос. Если произойдет ошибка - вывести ее. */ 
+
 mysql_query($query) or die(mysql_error());
 
-//сообщаем юзеру
-    echo "<font color='green'>Пользователь</font> <b><font color='red'>" . $login . "</font></b> <font color='green'>успешно удален.</font>"; 
-} else { echo "<font color='red'>Ошибка! Пользователь не удален.</font>"; }
+
+    echo "<font color='green'>РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ</font> <b><font color='red'>" . $login . "</font></b> <font color='green'>СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ.</font>"; 
+} else { echo "<font color='red'>РћС€РёР±РєР°! РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ СѓРґР°Р»РµРЅ.</font>"; }
 
 { unset($del);} }
 }
-// удаляем юзера_end
+
 
 }
-	
+    
   }
 ?>
 </body>

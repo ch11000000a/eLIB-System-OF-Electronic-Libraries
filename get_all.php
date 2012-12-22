@@ -22,17 +22,16 @@ session_start();
 <?php
 error_reporting(0);
 
-    // Проверяем, пусты ли переменные логина и id пользователя
     if (empty($_SESSION['login']) or empty($_SESSION['id']))
     {
-      echo "Вы не авторизованы, <a href='index.php'>Авторизоваться</a>";
+      echo "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹, <a href='index.php'>РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ</a>";
 }
     else
     {
 
 include('config.php');
 
-echo "<a href='index.php'>Вернуться на Главную Страницу</a><br/><br/>";
+echo "<a href='index.php'>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р“Р»Р°РІРЅСѓСЋ РЎС‚СЂР°РЅРёС†Сѓ</a><br/><br/>";
 include('config.php');
 $result = mysql_query("SELECT * FROM `books`"); 
 $vsego_strok = mysql_num_rows($result); 
@@ -56,9 +55,7 @@ while ($row = mysql_fetch_array($result))
 { 
     echo "<a href='get_ref.php?ref_id=" . $row['id'] . "'>" . $row['avtor'] . " - " . $row['nazv'] . "&nbsp;(" . $row['god_izd'] . ")&nbsp;</a><br/>"; 
 } 
-
-//выводим слово страницы
-echo "<br/><b>Страницы:</b>";
+echo "<br/><b>РЎС‚СЂР°РЅРёС†С‹:</b>";
  
 for($i=1; $i<=$skolko_stranic; $i++) 
 { 

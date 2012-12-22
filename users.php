@@ -52,32 +52,30 @@ session_start();
     include('config.php');
     if (empty($_SESSION['login']) or empty($_SESSION['id']))
     {
-      echo "Вы не авторизованы, <a href='index.php'>Авторизоваться</a>";
+      echo "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹, <a href='index.php'>РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ</a>";
 }
     else
     {
 
-echo "<a href='index.php'>Вернуться на Главную Страницу</a><br/><br/>";
+echo "<a href='index.php'>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р“Р»Р°РІРЅСѓСЋ РЎС‚СЂР°РЅРёС†Сѓ</a><br/><br/>";
 
 $sql = "SELECT * FROM `users`";
 
 
 $result = mysql_query($sql) or die(mysql_error());
-
-// Рисуем табличку
 $table = "<table border=1 width=100% align=center>\n";
 
 while ($row = mysql_fetch_assoc($result))
 {
-  if ($row['group_id'] == 0) {  $row['group_id'] = 'Пользователь'; }
-  if ($row['group_id'] == 1) {  $row['group_id'] = 'Модератор'; }
-  if ($row['group_id'] == 2) {  $row['group_id'] = 'Администратор'; }
+  if ($row['group_id'] == 0) {  $row['group_id'] = 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ'; }
+  if ($row['group_id'] == 1) {  $row['group_id'] = 'РњРѕРґРµСЂР°С‚РѕСЂ'; }
+  if ($row['group_id'] == 2) {  $row['group_id'] = 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ'; }
 
     $table .= "<tr>\n";
     $table .= "<td>".$row['id']."</td>\n";
     $table .= "<td>".$row['login']."</td>\n";
     $table .= "<td>".$row['group_id']."</td>\n";
-    $table .= "<td><a href='get_user.php?user_id=" . $row['id'] . "'>Дополнительно</a></td>\n";
+    $table .= "<td><a href='get_user.php?user_id=" . $row['id'] . "'>Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ</a></td>\n";
     $table .= "</tr>\n";
 }
 

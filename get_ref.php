@@ -19,26 +19,26 @@ session_start();
 </head>
 <body>
 <?php
-    // Проверяем, пусты ли переменные логина и id пользователя
+    
     if (empty($_SESSION['login']) or empty($_SESSION['id']))
     {
-      echo "Вы не авторизованы, <a href='index.php'>Авторизоваться</a>";
+      echo "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹, <a href='index.php'>РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ</a>";
 }
     else
     {
 
 include('config.php');
 
-echo "<a href='index.php'>Вернуться на Главную Страницу</a><br/><br/>";
+echo "<a href='index.php'>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р“Р»Р°РІРЅСѓСЋ РЎС‚СЂР°РЅРёС†Сѓ</a><br/><br/>";
 
-//Защищаемся от хацкеров
+
 if (!empty($_GET['ref_id'])) {
 $id = $_GET['ref_id'];
 $id = htmlspecialchars($id);
 $id = stripcslashes($id);
 $id = trim($id);
 $id = abs($id);
-//Защищаемся от хацкеров
+
 
 $sql = "SELECT * FROM `books` WHERE id='$id'";
 $result = mysql_query($sql) or die(mysql_error() ."<br/>");
@@ -47,7 +47,7 @@ while ($row = mysql_fetch_assoc($result))
 {
   echo "<center><b>" . $row['nazv'] . "</b></center><br/>";
   echo "<center><pre>" . $row['referat'] . "</pre></center><br/>";
-  if ( !empty($row['link']) ) { echo "<a href='" . $row['link'] . "'>Скачать книгу</a>"; } else { echo "<b>Нет электронного варианта для этой книги, обратитесь к администратору.</b>"; };
+  if ( !empty($row['link']) ) { echo "<a href='" . $row['link'] . "'>РЎРєР°С‡Р°С‚СЊ РєРЅРёРіСѓ</a>"; } else { echo "<b>РќРµС‚ СЌР»РµРєС‚СЂРѕРЅРЅРѕРіРѕ РІР°СЂРёР°РЅС‚Р° РґР»СЏ СЌС‚РѕР№ РєРЅРёРіРё, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ.</b>"; };
 }
 
 }
